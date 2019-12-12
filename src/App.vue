@@ -31,12 +31,32 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: white;
+    padding-top: 20px;
+    background: url("./assets/bg.jpg") repeat center top;
+  }
+  .VueTables__sortable {
+    cursor: pointer;
+  }
+  table.VueTables__table.table.table-striped.table-bordered.table-hover {
+    color: white;
+  }
+  h3.vue-title {
+    color: white;
+  }
+  label.form-label {
+    color: white;
+  }
+  label.form__label {
+    color: white;
+  }
+  .table-hover tbody tr:hover {
+    color: red;
+    background-color: rgba(0, 0, 0, 0.075);
+  }
 </style>
