@@ -5,6 +5,7 @@ import Reviews from '@/components/Reviews'
 import Review from '@/components/Review'
 import AboutUs from '@/components/AboutUs'
 import ContactUs from '@/components/ContactUs'
+import Edit from '../components/Edit'
 
 Vue.use(Router)
 
@@ -24,6 +25,12 @@ export default new Router({
       path: '/review',
       name: 'Review',
       component: Review
+    },
+    {
+      path: '/edit',
+      name: 'Edit',
+      component: Edit,
+      props: true
     },
     {
       path: '/about',

@@ -4,7 +4,7 @@ export default {
   fetchReviews () {
     return Api().get('/reviews')
   },
-  postReviews (review) {
+  postReview (review) {
     return Api().post('/reviews', review,
       { headers: {'Content-type': 'application/json'} })
   },

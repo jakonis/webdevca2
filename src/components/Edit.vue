@@ -5,8 +5,8 @@
       <div class="row justify-content-center">
         <div class="col-md-6">
           <template v-if="childDataLoaded">
-          <donation-form :donation="donation" donationBtnTitle="Update Donation"
-                         @donation-is-created-updated="updateDonation"></donation-form>
+            <review-form :review="review" reviewBtnTitle="Update Review"
+                           @review-is-created-updated="updateReview"></review-form>
           </template>
         </div><!-- /col -->
       </div><!-- /row -->
@@ -15,44 +15,44 @@
 </template>
 
 <script>
-import DonationService from '@/services/DonationService'
-import DonationForm from '@/components/DonationForm'
+import ReviewService from '@/services/ReviewService'
+import ReviewForm from '@/components/ReviewForm'
 
 export default {
   data () {
     return {
-      donation: {},
+      review: {},
       childDataLoaded: false,
       temp: {},
-      messagetitle: ' Update Donation '
+      messagetitle: ' Update Review '
     }
   },
   components: {
-    'donation-form': DonationForm
+    'review-form': ReviewForm
   },
   created () {
-    this.getDonation()
+    this.getReview()
   },
   methods: {
-    getDonation: function () {
-      DonationService.fetchDonation(this.$router.params)
+    getReview: function () {
+      ReviewService.fetchReview(this.$router.params)
         .then(response => {
           this.temp = response.data
-          this.donation = this.temp[0]
+          this.review = this.temp[0]
           this.childDataLoaded = true
-          console.log('Getting Donation in Edit: ' + JSON.stringify(this.donation, null, 5))
+          console.log('Getting Review in Edit: ' + JSON.stringify(this.review, null, 5))
         })
         .catch(error => {
           this.errors.push(error)
           console.log(error)
         })
     },
-    updateDonation: function (donation) {
-      console.log('Before PUT ' + JSON.stringify(donation, null, 5))
-      DonationService.putDonation(this.$router.params, donation)
+    updateReview: function (review) {
+      console.log('Before PUT ' + JSON.stringify(review, null, 5))
+      ReviewService.putReview(this.$router.params, review)
         .then(response => {
           console.log(response)
-          console.log('AFTER PUT ' + JSON.stringify(donation, null, 5))
+          console.log('AFTER PUT ' + JSON.stringify(review, null, 5))
         })
         .catch(error => {
           this.errors.push(error)

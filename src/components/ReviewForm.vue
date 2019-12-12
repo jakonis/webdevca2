@@ -46,10 +46,7 @@
 import Vue from 'vue'
 import VueForm from 'vueform'
 import Vuelidate from 'vuelidate'
-import VueSweetalert from 'vue-sweetalert'
-
 import { required, minLength, between } from 'vuelidate/lib/validators'
-import ReviewService from '../services/reviewservice'
 
 Vue.use(VueForm, {
   inputClasses: {
@@ -59,18 +56,19 @@ Vue.use(VueForm, {
 })
 
 Vue.use(Vuelidate)
-Vue.use(VueSweetalert)
 
 export default {
-  name: 'Review',
+  name: 'FormData',
+  props: ['reviewBtnTitle', 'review'],
   data () {
     return {
       messagetitle: ' Review ',
-      message: '',
-      stars: 0,
-      user: '',
+      // eslint-disable-next-line vue/no-dupe-keys
+      review: this.review.review,
+      message: this.review.message,
+      stars: this.review.stars,
+      user: this.review.user,
       upvotes: 0,
-      review: {},
       submitStatus: null
     }
   },
@@ -79,9 +77,9 @@ export default {
       required,
       minLength: minLength(5)
     },
-    user: {
+    amount: {
       required,
-      minLength: minLength(1)
+      between: between(1, 1000)
     }
   },
   methods: {
@@ -95,17 +93,22 @@ export default {
         this.submitStatus = 'PENDING'
         setTimeout(() => {
           this.submitStatus = 'OK'
-          this.review = {
+          var review = {
+            review: this.review,
+            message: this.message,
             stars: this.stars,
             user: this.user,
-            upvotes: this.upvotes,
-            message: this.message
+            upvotes: this.upvotes
           }
-          console.log('Submitting in ReviewForm : ' + JSON.stringify(this.review, null, 5))
-          this.submitReview(this.review)
+          this.review = review
+          console.log('Submitting in ReviewForm : ' +
+                            JSON.stringify(this.review, null, 5))
+          this.$emit('review-is-created-updated', this.review)
         }, 500)
       }
-    }}}
+    }
+  }
+}
 </script>
 
 <style scoped>
@@ -118,7 +121,7 @@ export default {
     color: red;
     margin-left: 0.25rem;
   }
-  .donate-form .form-control-label.text-left{
+  .review-form .form-control-label.text-left{
     text-align: left;
   }
 

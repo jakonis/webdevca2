@@ -15,7 +15,7 @@
 /* eslint-disable */
     import Vue from 'vue'
     import VueTables from 'vue-tables-2'
-    import ReviewService from "../services/reviewservice";
+    import ReviewService from "../services/ReviewService";
 
     Vue.use(VueTables.ClientTable, {compileTemplates: true, filterByColumn: true});
 
@@ -64,16 +64,16 @@
                 ReviewService.upvoteReview(id)
                     .then(response => {
                         // JSON responses are automatically parsed.
-                        this.loadReviews()
+                        this.loadReviews();
                         console.log(response)
                     })
                     .catch(error => {
-                        this.errors.push(error)
+                        this.errors.push(error);
                         console.log(error)
                     })
             },
             editReview: function (id) {
-                this.$router.params = id
+                this.$router.params = id;
                 this.$router.push('edit')
             },
             deleteReview: function (id) {
@@ -87,23 +87,24 @@
                     showCloseButton: true,
                     showLoaderOnConfirm: true
                 }).then((result) => {
-                    console.log('SWAL Result : ' + result)
-                    if (result.value === true) {
+                    console.log('SWAL Result : ' + result.value);
+                    if (result === true) {
                         ReviewService.deleteReview(id)
                             .then(response => {
                                 // JSON responses are automatically parsed.
-                                this.message = response.data
-                                console.log(this.message)
-                                this.loadReviews()
-                                // Vue.nextTick(() => this.$refs.vuetable.refresh())
+                                this.message = response.data;
+                                console.log(this.message);
+                                this.loadReviews();
+                                 Vue.nextTick(() => this.$refs.vuetable.refresh());
                                 this.$swal('Deleted', 'You successfully deleted this Review ' + JSON.stringify(response.data, null, 5), 'success')
                             })
                             .catch(error => {
-                                this.$swal('ERROR', 'Something went wrong trying to Delete ' + error, 'error')
-                                this.errors.push(error)
+                                this.$swal('ERROR', 'Something went wrong trying to Delete ' + error, 'error');
+                                this.errors.push(error);
                                 console.log(error)
                             })
                     } else {
+                        console.log('SWAL Else Result : ' + result.value);
                         this.$swal('Cancelled', 'Your Review still Counts!', 'info')
                     }
                 })
