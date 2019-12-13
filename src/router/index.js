@@ -6,6 +6,7 @@ import Review from '@/components/Review'
 import AboutUs from '@/components/AboutUs'
 import ContactUs from '@/components/ContactUs'
 import Edit from '../components/Edit'
+import GoogleMap from '../components/GoogleMap'
 
 Vue.use(Router)
 
@@ -33,9 +34,9 @@ export default new Router({
       props: true
     },
     {
-      path: '/maps',
-      name: 'Map',
-      component: Map
+      path: '/GoogleMap',
+      name: 'GoogleMap',
+      component: GoogleMap
     },
     {
       path: '/about',

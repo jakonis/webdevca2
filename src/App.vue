@@ -9,7 +9,7 @@
           <b-nav-item to="/#"><i class="fa fa-home" style="padding: 5px"> Home</i></b-nav-item>
           <b-nav-item to="/reviews"><i class="fa fa-list" style="padding: 5px"> Manage Reviews</i></b-nav-item>
           <b-nav-item to="/review"><i class="fa fa-comments" style="padding: 5px"> Review</i></b-nav-item>
-          <b-nav-item to="/map"><i class="fa fa-globe" style="padding: 5px"> Map</i></b-nav-item>
+          <b-nav-item to="/GoogleMap"><i class="fa fa-globe" style="padding: 5px"> Map</i></b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
           <i class="fa fa-pied-piper-alt fa-1x" style="padding: 5px; color: white;"></i>
@@ -17,17 +17,15 @@
       </b-collapse>
     </b-navbar>
     <router-view/>
-<!--    <google-map/>-->
   </div>
 </template>
 
 <script>
-// import GoogleMap from './components/GoogleMap'
-
+import GoogleMap from './components/GoogleMap'
 export default {
   name: 'App',
   components: {
-    // GoogleMap
+    GoogleMap
   }
 }
 </script>
