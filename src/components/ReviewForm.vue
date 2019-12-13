@@ -60,16 +60,15 @@ Vue.use(VueForm, {
 Vue.use(Vuelidate)
 
 export default {
-  name: 'Review',
-  props: ['reviewBtnTitle', 'donation'],
+  name: 'FormData',
+  props: ['reviewBtnTitle', 'review'],
   data () {
     return {
       messagetitle: ' Review ',
-      message: '',
-      stars: 0,
-      user: '',
+      message: this.review.message,
+      stars: this.review.stars,
+      user: this.review.user,
       upvotes: 0,
-      review: {},
       submitStatus: null
     }
   },
@@ -95,15 +94,14 @@ export default {
         setTimeout(() => {
           this.submitStatus = 'OK'
           var review = {
+            message: this.message,
             stars: this.stars,
-            user: this.user,
             upvotes: this.upvotes,
-            message: this.message
+            user: this.user
           }
-          // eslint-disable-next-line no-undef
           this.review = review
           console.log('Submitting in ReviewForm : ' +
-                JSON.stringify(this.review, null, 5))
+                        JSON.stringify(this.review, null, 5))
           this.$emit('review-is-created-updated', this.review)
         }, 500)
       }

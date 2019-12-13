@@ -95,7 +95,7 @@
                     showLoaderOnConfirm: true
                 }).then((result) => {
                     console.log('SWAL Result : ' + result)
-                    if (result.value === true) {
+                    if (result === true) {
                         ReviewService.deleteReview(id)
                             .then(response => {
                                 // JSON responses are automatically parsed.
