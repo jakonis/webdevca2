@@ -16,7 +16,8 @@
 
 <script>
 import ReviewService from '@/services/ReviewService'
-import ReviewForm from '@/components/ReviewForm'
+import Review from './Review'
+import ReviewForm from './ReviewForm'
 
 export default {
   data () {
@@ -28,6 +29,7 @@ export default {
     }
   },
   components: {
+    Review,
     'review-form': ReviewForm
   },
   created () {

@@ -7,8 +7,9 @@
 
           <form @submit.prevent="submit">
             <div class="form-group">
-              <label class="form-label">Select Stars Type</label>
-              <select id="stars" name="stars" class="form-control" type="number" v-model="stars">
+              <label class="form-label">Select Stars</label>
+              <select id="stars" name="stars" class="form-control"
+                      type="text" v-model="stars">
                 <option value="null" selected disabled hidden>Choose Stars Type</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -30,7 +31,7 @@
             <div class="error" v-if="!$v.message.required">Message is Required</div>
             <div class="error" v-if="!$v.message.minLength">Message must have at least {{$v.message.$params.minLength.min}} letters.</div>
             <p>
-              <button class="btn btn-primary btn1" type="submit" :disabled="submitStatus === 'PENDING'">Make Review</button>
+              <button class="btn btn-primary btn1" type="submit" :disabled="submitStatus === 'PENDING'">{{ reviewBtnTitle }}</button>
             </p>
             <p class="typo__p" v-if="submitStatus === 'OK'">Thanks for your Review!</p>
             <p class="typo__p" v-if="submitStatus === 'ERROR'">Please Fill in the Form Correctly.</p>
@@ -41,12 +42,13 @@
     </div><!-- /container -->
   </div>
 </template>
-
+here
 <script>
 import Vue from 'vue'
 import VueForm from 'vueform'
 import Vuelidate from 'vuelidate'
-import { required, minLength, between } from 'vuelidate/lib/validators'
+// eslint-disable-next-line standard/object-curly-even-spacing
+import { required, minLength} from 'vuelidate/lib/validators'
 
 Vue.use(VueForm, {
   inputClasses: {
@@ -58,17 +60,16 @@ Vue.use(VueForm, {
 Vue.use(Vuelidate)
 
 export default {
-  name: 'FormData',
-  props: ['reviewBtnTitle', 'review'],
+  name: 'Review',
+  props: ['reviewBtnTitle', 'donation'],
   data () {
     return {
       messagetitle: ' Review ',
-      // eslint-disable-next-line vue/no-dupe-keys
-      review: this.review.review,
-      message: this.review.message,
-      stars: this.review.stars,
-      user: this.review.user,
+      message: '',
+      stars: 0,
+      user: '',
       upvotes: 0,
+      review: {},
       submitStatus: null
     }
   },
@@ -77,9 +78,9 @@ export default {
       required,
       minLength: minLength(5)
     },
-    amount: {
+    user: {
       required,
-      between: between(1, 1000)
+      minLength: minLength(1)
     }
   },
   methods: {
@@ -94,15 +95,15 @@ export default {
         setTimeout(() => {
           this.submitStatus = 'OK'
           var review = {
-            review: this.review,
-            message: this.message,
             stars: this.stars,
             user: this.user,
-            upvotes: this.upvotes
+            upvotes: this.upvotes,
+            message: this.message
           }
+          // eslint-disable-next-line no-undef
           this.review = review
           console.log('Submitting in ReviewForm : ' +
-                            JSON.stringify(this.review, null, 5))
+                JSON.stringify(this.review, null, 5))
           this.$emit('review-is-created-updated', this.review)
         }, 500)
       }

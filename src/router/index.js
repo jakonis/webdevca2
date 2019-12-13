@@ -33,6 +33,11 @@ export default new Router({
       props: true
     },
     {
+      path: '/maps',
+      name: 'Map',
+      component: Map
+    },
+    {
       path: '/about',
       name: 'AboutUs',
       component: AboutUs

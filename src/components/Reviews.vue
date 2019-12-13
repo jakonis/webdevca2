@@ -17,10 +17,17 @@
     import VueTables from 'vue-tables-2'
     import ReviewService from "../services/ReviewService";
 
+     import VueSweetalert2 from 'vue-sweetalert2';
+// If you don't need the styles, do not connect
+
+      import 'sweetalert2/dist/sweetalert2.min.css';
+
+      Vue.use(VueSweetalert2);
+
     Vue.use(VueTables.ClientTable, {compileTemplates: true, filterByColumn: true});
 
     export default {
-        name: 'Reviews',
+        name: 'reviews',
         data () {
             return {
                 messagetitle: ' Reviews List ',
@@ -87,30 +94,27 @@
                     showCloseButton: true,
                     showLoaderOnConfirm: true
                 }).then((result) => {
-                    console.log('SWAL Result : ' + result.value);
-                    if (result === true) {
+                    console.log('SWAL Result : ' + result)
+                    if (result.value === true) {
                         ReviewService.deleteReview(id)
                             .then(response => {
                                 // JSON responses are automatically parsed.
-                                this.message = response.data;
-                                console.log(this.message);
-                                this.loadReviews();
-                                 Vue.nextTick(() => this.$refs.vuetable.refresh());
-                                this.$swal('Deleted', 'You successfully deleted this Review ' + JSON.stringify(response.data, null, 5), 'success')
+                                this.message = response.data
+                                console.log(this.message)
+                                this.loadReviews()
+                                // Vue.nextTick(() => this.$refs.vuetable.refresh())
+                                this.$swal('Deleted', 'You successfully deleted this Reviews ' + JSON.stringify(response.data, null, 5), 'success')
                             })
                             .catch(error => {
-                                this.$swal('ERROR', 'Something went wrong trying to Delete ' + error, 'error');
-                                this.errors.push(error);
+                                this.$swal('ERROR', 'Something went wrong trying to Delete ' + error, 'error')
+                                this.errors.push(error)
                                 console.log(error)
                             })
                     } else {
-                        console.log('SWAL Else Result : ' + result.value);
                         this.$swal('Cancelled', 'Your Review still Counts!', 'info')
                     }
                 })
-            }
-        }
-    }
+            },}}
 </script>
 
 <style scoped>
@@ -124,4 +128,13 @@
     font-size: 45pt;
     margin-bottom: 10px;
   }
+
+  button.swal2-confirm.swal2-styled {
+    color: white;
+    background-color: red;
+    border-color: black;
+    border: 1px;
+    height: 50px;
+  }
+
 </style>
