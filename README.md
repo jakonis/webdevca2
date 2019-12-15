@@ -1,30 +1,19 @@
 # ReviewCA 2
 
-> A Vue.js project
+Alanas Jakonis 20076515
 
-## Build Setup
+As a part of my CA 2, I have developed a vue.js web app. The web app is hosted on firebase, database is also sored and updated on firebase. The websites functionality is to create reviews, view and delete them and also update them. The web app also includes google maps API. On the map page the users are able to search a location and add a marker on the searched location
 
-``` bash
-# install dependencies
-npm install
+# Github
 
-# serve with hot reload at localhost:8080
-npm run dev
+https://github.com/jakonis/webdevca2
 
-# build for production with minification
-npm run build
+https://github.com/jakonis/WebApp-master
 
-# build for production and view the bundle analyzer report
-npm run build --report
+# Youtube
 
-# run unit tests
-npm run unit
+https://www.youtube.com/watch?v=5bye89byhjQ&feature=youtu.be
 
-# run e2e tests
-npm run e2e
+# Reference 
 
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+https://alligator.io/vuejs/vue-google-maps/
