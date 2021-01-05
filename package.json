@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@google/maps": "^1.0.2",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-polyfill": "^6.26.0",
     "bootstrap-vue": "^2.0.0-rc.11",
     "vue": "^2.5.2",
